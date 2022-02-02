@@ -8,6 +8,10 @@
     display: flex;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .sidebar__container {
     width: 25vw;
     height: 100%;
@@ -19,11 +23,35 @@
     overflow: auto;
 }
 
-.explorer__container {
-    width: 70vw;
-    height: 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    overflow: auto;
+.navbar__buttons:hover {
+    background-color: black;
+    color: white;
+}
+
+.navbar__buttons {
+    border-radius: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    transition-duration: 0.2s;
+}
+
+.navbar__iconButtons:hover {
+    background-color: black;
+    color: white;
+}
+
+.navbar_iconButtons {
+    border-radius: 6px;
+    border: none;
+    background: none;
+    transition-duration: 0.2s;
+}
+
+.subfolders__list {
+    display: none;
+}
+
+.subfolders__list.active {
+    display: block;
 }
