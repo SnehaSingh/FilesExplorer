@@ -1,5 +1,16 @@
+import {
+    sortByNameDesc,
+    sortByNameAsc,
+    sortByDateAsc,
+    sortByDateDesc,
+    sortBySizeAsc,
+    sortBySizeDesc,
+    formatSize
+} from './Utils.js';
+
 function FilesExplorer(folderList) {
     let currentFiles = [];
+    let sortOrder = '';
 
     const clearTable = () => {
         const collection = document.querySelectorAll('tr');
@@ -49,6 +60,7 @@ function FilesExplorer(folderList) {
             }
             
             var dateTextNode = document.createTextNode(modified);
+            //const formattedSize = formatSize(size);
             var sizeTextNode = document.createTextNode(size);
         
             dateElement.appendChild(dateTextNode);
@@ -59,6 +71,36 @@ function FilesExplorer(folderList) {
             table.appendChild(tr);
         }
     };
+
+    const sortByColumn = (desc, asc) => {
+        if (sortOrder === "Ascending") {
+            currentFiles.sort(desc);
+            sortOrder = "Descending";
+        }
+        else {
+            currentFiles.sort(asc);
+            sortOrder = "Ascending";
+        }
+        updateExplorer(currentFiles);
+    }
+
+    const nameHeader = document.getElementById("name__header");
+    nameHeader.addEventListener("click", () => {
+        sortByColumn(sortByNameDesc, sortByNameAsc);
+        nameHeader.nextElementSibling.classList.toggle("fa-rotate-180");
+    });
+
+    const dateHeader = document.getElementById("date__header");
+    dateHeader.addEventListener("click", () => {
+        sortByColumn(sortByDateDesc, sortByDateAsc);
+        dateHeader.nextElementSibling.classList.toggle("fa-rotate-180");
+    });
+
+    const sizeHeader = document.getElementById("size__header");
+    sizeHeader.addEventListener("click", () => {
+        sortByColumn(sortBySizeDesc, sortBySizeAsc);
+        sizeHeader.nextElementSibling.classList.toggle("fa-rotate-180");
+    });
 
     return {
         update: updateExplorer
