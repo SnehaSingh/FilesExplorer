@@ -6,7 +6,7 @@ import {
     sortBySizeAsc,
     sortBySizeDesc,
     formatSize
-} from './Utils.js';
+} from '../Utils/SortUtils.js';
 
 function FilesExplorer(folderList) {
     let currentFiles = [];

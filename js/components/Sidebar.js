@@ -6,11 +6,14 @@ function Sidebar(data) {
         var li = document.createElement("li");
         var span = document.createElement("span");
         span.style.display = "inline-block";
+
         var button = document.createElement("button");
         button.className = "navbar__buttons";
         button.innerHTML = name || "";
         button.addEventListener("click", () => {
-            // do some css here to show that current folder is selected
+
+            // clicking populates contents of this folder in the file explorer
+            // on the right pane
             updateExplorerCallback(folder?.children);
         });
 
@@ -18,9 +21,12 @@ function Sidebar(data) {
         iconButton.className = "navbar_iconButtons";
         iconButton.innerHTML = '<i class="fa fa-caret-right"></i>';
         iconButton.addEventListener("click", () => {
-            // if children not populated, then populate it
+
+            // if child folders are not populated, then populate it
             if (!iconButton.nextElementSibling.nextElementSibling) {
                 const { children} = folder;
+
+                // each subfolder list is a collapsable section
                 const ul = document.createElement("ul");
                 ul.className = "subfolders__list";
                 for (let i = 0; i < children.length; i++) {
@@ -55,7 +61,7 @@ function Sidebar(data) {
             //create the file explorer for the first folder if it exists
             updateExplorerCallback(data[0]?.children);
         }
-        document.getElementById("navbar").appendChild(ul);
+        return ul;
     };
     return {
         createSidebar: create,

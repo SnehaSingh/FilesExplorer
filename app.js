@@ -1,6 +1,6 @@
 import Sidebar from "./js/components/Sidebar.js";
 import FilesExplorer from "./js/components/FilesExplorer.js";
-import getJsonData from "./js/getData.js";
+import getJsonData from "./js/Utils/getData.js";
 
 function createExplorer() {
     const { createSidebar } = Sidebar();
@@ -12,7 +12,8 @@ function createExplorer() {
 
     getJsonData("/files")
     .then(data => {
-        createSidebar(data, updateExplorer);
+        const sidebarComponent = createSidebar(data, updateExplorer);
+        document.getElementById("navbar").appendChild(sidebarComponent);
     })
     .catch(error => {
         console.log("An error has occurred while fetching data. ", error);
