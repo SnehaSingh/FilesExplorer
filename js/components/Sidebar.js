@@ -1,72 +1,110 @@
-function Sidebar(data) {
+import {
+    sortByNameDesc,
+    sortByNameAsc,
+    sortByDateAsc,
+    sortByDateDesc,
+    sortBySizeAsc,
+    sortBySizeDesc,
+    formatSize
+} from './Utils.js';
 
-    // creates a navigation item for the sidebar
-    const createFolder = (folder, updateExplorerCallback) => {
-        const { name } = folder;
-        var li = document.createElement("li");
-        var span = document.createElement("span");
-        span.style.display = "inline-block";
-        var button = document.createElement("button");
-        button.className = "navbar__buttons";
-        button.style.width = "fit-content";
-        button.style.fontSize = "16px";
-        button.style.textAlign = "left";
-        button.style.margin = "10px";
-        button.innerHTML = name || "";
-        button.addEventListener("click", () => {
-            // do some css here to show that current folder is selected
-            updateExplorerCallback(folder?.children);
-        });
+function FilesExplorer(folderList) {
+    let currentFiles = [];
+    let sortOrder = '';
 
-        var iconButton = document.createElement("button");
-        iconButton.className = "navbar_iconButtons";
-        iconButton.style.width = "fit-content";
-        iconButton.style.fontSize = "16px";
-        iconButton.style.textAlign = "left";
-        iconButton.style.margin = "10px";
-        iconButton.innerHTML = '<i class="fa fa-caret-right"></i>';
-        iconButton.addEventListener("click", () => {
-            // if children not populated, then populate it
-            if (!iconButton.nextElementSibling.nextElementSibling) {
-                const { children} = folder;
-                const ul = document.createElement("ul");
-                ul.className = "subfolders__list";
-                for (let i = 0; i < children.length; i++) {
-                    const { type } = children[i];
-                    if (type === "folder") {
-                        const subListItem = createFolder(children[i], updateExplorerCallback);
-                        ul.appendChild(subListItem);
-                    }
-                }
-                span.appendChild(ul);
+    const clearTable = () => {
+        const collection = document.querySelectorAll('tr');
+        for (let i = 0; i < collection.length; i++) {
+            if (collection[i].firstElementChild.nodeName !== "TH") {
+                collection[i].remove();
             }
-            iconButton.classList.toggle("fa-rotate-90");
-            iconButton.nextElementSibling.nextElementSibling.classList.toggle("active");
-        });
-        span.appendChild(iconButton);
-        span.appendChild(button);
-        li.appendChild(span);
-        return li;
-    };
-
-    // Rename to createTree
-    const create = (props, updateExplorerCallback) => {
-        const { data } = props;
-        const ul = document.createElement("ul");
-        for (let i = 0; i < data?.length; i++) {
-            const folderDetails = data[i];
-            if (folderDetails?.type === "folder") {
-                const listItem = createFolder(folderDetails, updateExplorerCallback);
-                ul.appendChild(listItem);
-            }
-            //create the file explorer for the first folder if it exists
-            updateExplorerCallback(data[0]?.children);
         }
-        document.getElementById("navbar").appendChild(ul);
+    }
+
+    const updateExplorer = (filesList) => {
+        //const { children } = folder;
+        const table = document.getElementById("explorerTable");
+
+        // make sure the explorer is empty initially
+        clearTable();
+        currentFiles = [];
+        for (let i = 0; i < filesList.length; i++){
+            const { type, name, modified, size } = filesList[i];
+            currentFiles.push(filesList[i]);
+            const tr = document.createElement('tr');
+            tr.className = "table__data";
+        
+            const nameElement = document.createElement('td');
+            nameElement.className = "explorer__nameColumn";
+            const dateElement = document.createElement('td');
+            dateElement.className = "explorer__dateColumn";
+            const sizeElement = document.createElement('td');
+            sizeElement.className = "explorer__sizeColumn";
+
+            if (type === "folder") {
+                let nameButton = document.createElement("button");
+                nameButton.className = "explorer__buttons";
+                nameButton.innerHTML = `<i class="fa fa-folder" aria-hidden="true"></i> ${name}`;
+                nameButton.addEventListener("click", () => {
+                    updateExplorer(filesList[i]?.children);
+                });
+                nameElement.appendChild(nameButton);
+            }
+            else if (type === "file") {
+                let iconNode = document.createElement("span");
+                iconNode.className = "fa fa-file";
+                iconNode.style.paddingRight = "3px";
+                var nameTextNode = document.createTextNode(name);
+                nameElement.appendChild(iconNode);
+                nameElement.appendChild(nameTextNode);
+            }
+            
+            var dateTextNode = document.createTextNode(modified);
+            //const formattedSize = formatSize(size);
+            var sizeTextNode = document.createTextNode(size);
+        
+            dateElement.appendChild(dateTextNode);
+            sizeElement.appendChild(sizeTextNode);
+            tr.appendChild(nameElement);
+            tr.appendChild(dateElement);
+            tr.appendChild(sizeElement);
+            table.appendChild(tr);
+        }
     };
+
+    const sortByColumn = (desc, asc) => {
+        if (sortOrder === "Ascending") {
+            currentFiles.sort(desc);
+            sortOrder = "Descending";
+        }
+        else {
+            currentFiles.sort(asc);
+            sortOrder = "Ascending";
+        }
+        updateExplorer(currentFiles);
+    }
+
+    const nameHeader = document.getElementById("name__header");
+    nameHeader.addEventListener("click", () => {
+        sortByColumn(sortByNameDesc, sortByNameAsc);
+        nameHeader.nextElementSibling.classList.toggle("fa-rotate-180");
+    });
+
+    const dateHeader = document.getElementById("date__header");
+    dateHeader.addEventListener("click", () => {
+        sortByColumn(sortByDateDesc, sortByDateAsc);
+        dateHeader.nextElementSibling.classList.toggle("fa-rotate-180");
+    });
+
+    const sizeHeader = document.getElementById("size__header");
+    sizeHeader.addEventListener("click", () => {
+        sortByColumn(sortBySizeDesc, sortBySizeAsc);
+        sizeHeader.nextElementSibling.classList.toggle("fa-rotate-180");
+    });
+
     return {
-        createSidebar: create,
+        update: updateExplorer
     }
 }
 
-export default Sidebar;
+export default FilesExplorer;
