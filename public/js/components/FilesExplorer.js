@@ -4,9 +4,9 @@ import {
     sortByDateAsc,
     sortByDateDesc,
     sortBySizeAsc,
-    sortBySizeDesc,
-    formatSize
-} from '../Utils/SortUtils.js';
+    sortBySizeDesc
+} from '../Utils/sortUtils.js';
+import { formatSize } from '../Utils/commonUtils.js';
 
 function FilesExplorer(folderList) {
     let currentFiles = [];
@@ -22,10 +22,9 @@ function FilesExplorer(folderList) {
     }
 
     const updateExplorer = (filesList) => {
-        //const { children } = folder;
         const table = document.getElementById("explorerTable");
 
-        // make sure the explorer is empty initially
+        // clear the explorer table before updating it
         clearTable();
         currentFiles = [];
         for (let i = 0; i < filesList.length; i++){
@@ -54,14 +53,14 @@ function FilesExplorer(folderList) {
                 let iconNode = document.createElement("span");
                 iconNode.className = "fa fa-file";
                 iconNode.style.paddingRight = "3px";
-                var nameTextNode = document.createTextNode(name);
+                const nameTextNode = document.createTextNode(name);
                 nameElement.appendChild(iconNode);
                 nameElement.appendChild(nameTextNode);
             }
             
-            var dateTextNode = document.createTextNode(modified);
-            //const formattedSize = formatSize(size);
-            var sizeTextNode = document.createTextNode(size);
+            const dateTextNode = document.createTextNode(modified);
+            const formattedSize = formatSize(size);
+            const sizeTextNode = document.createTextNode(formattedSize);
         
             dateElement.appendChild(dateTextNode);
             sizeElement.appendChild(sizeTextNode);

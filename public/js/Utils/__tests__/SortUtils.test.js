@@ -1,5 +1,5 @@
 import { expect } from '@jest/globals';
-import {sortByNameAsc, sortByNameDesc} from '../SortUtils.js'
+import {sortByNameAsc, sortByNameDesc} from '../sortUtils.js'
 
 // test array is sorted in ascending order
 test('sortByNameAsc sorts array in ascending order', () => {
