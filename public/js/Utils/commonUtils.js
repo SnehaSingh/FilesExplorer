@@ -3,8 +3,6 @@
  * @param {Number} bytes to be formatted
  * @returns 
  */
-
-
 export const formatSize = (bytes) => {
     const KILOBYTE = 1024;
     const MEGABYTE = 1024 * 1024;
