@@ -55,7 +55,5 @@ describe("Tests for FileExplorer", () => {
     expect(secondRow.childNodes[0].textContent).toBe("sample.txt");
     expect(secondRow.childNodes[1].textContent).toBe("05/11/2019");
     expect(secondRow.childNodes[2].textContent).toBe("11.8 MB");
-    // const firstRow = table.querySelectorAll("tr")[0];
-    // expect(firstRow.firstChild.firstChild.textContent).toBe("Documents")
   })
-})
+});
