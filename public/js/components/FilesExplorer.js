@@ -84,8 +84,10 @@ function FilesExplorer() {
             currentTreeNodes.sort(desc);
             sortOrder = "Descending";
         }
-        currentTreeNodes.sort(asc);
-        sortOrder = "Ascending";
+        else {
+            currentTreeNodes.sort(asc);
+            sortOrder = "Ascending";
+        }
         updateExplorer(currentTreeNodes);
     }
 
