@@ -1,5 +1,5 @@
 # FilesExplorer
-This is an app that lets user browse the files and folders given by the server
+This is an app that lets users browse the files and folders on the server.
 
 # Folder structure
 ```bash
@@ -30,6 +30,7 @@ This is an app that lets user browse the files and folders given by the server
     `npm install`
 
 3. Start the node server,
+
     `npm start`
 
 
