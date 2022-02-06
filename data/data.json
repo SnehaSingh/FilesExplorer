@@ -5,21 +5,21 @@
             "type": "folder",
             "name": "Documents",
             "modified": "12/12/2021",
-            "size": 1024,
+            "size": "",
             "children": [
                 {
                     "id": "2",
                     "type": "folder",
                     "name": "personal",
                     "modified": "12/12/2021",
-                    "size": 1024,
+                    "size": "",
                     "children": [
                         {
                             "id": "3",
                             "type": "folder",
                             "name": "old",
                             "modified": "10/12/2021",
-                            "size": 1024,
+                            "size": "",
                             "children": [
                                 {
                                     "id": "22",
@@ -34,35 +34,35 @@
                                     "type": "folder",
                                     "name": "older",
                                     "modified": "06/22/2021",
-                                    "size": 9024898,
+                                    "size": "",
                                     "children": [
                                         {
                                             "id": "25",
                                             "type": "folder",
                                             "name": "xyz",
                                             "modified": "06/26/2021",
-                                            "size": 9024898,
+                                            "size": "",
                                             "children": [
                                                 {
                                                     "id": "26",
                                                     "type": "folder",
                                                     "name": "abc",
                                                     "modified": "06/26/2019",
-                                                    "size": 10024898,
+                                                    "size": "",
                                                     "children": [
                                                         {
                                                             "id": "27",
                                                             "type": "folder",
                                                             "name": "science",
                                                             "modified": "04/26/2020",
-                                                            "size": 9024898,
+                                                            "size": "",
                                                             "children": [
                                                                 {
                                                                     "id": "27",
                                                                     "type": "folder",
                                                                     "name": "abc",
                                                                     "modified": "06/26/2019",
-                                                                    "size": 10024898,
+                                                                    "size": "",
                                                                     "children": []
                                                                 }
                                                             ]
@@ -98,15 +98,32 @@
                     "type": "folder",
                     "name": "work",
                     "modified": "12/15/2021",
-                    "size": 2048,
-                    "children": []
+                    "size": "",
+                    "children": [
+                      {
+                        "id": "76",
+                        "type": "file",
+                        "name": "questions.txt",
+                        "modified": "05/15/2017",
+                        "size": 1297465,
+                        "children": []
+                      },
+                      {
+                        "id": "86",
+                        "type": "file",
+                        "name": "sprint_planning.txt",
+                        "modified": "02/15/2000",
+                        "size": 938594375,
+                        "children": []
+                      }
+                    ]
                 },
                 {
                     "id": "7",
                     "type": "folder",
                     "name": "play",
                     "modified": "12/13/2021",
-                    "size": 5026,
+                    "size": "",
                     "children": []
                 },
                 {
@@ -132,14 +149,14 @@
             "type": "folder",
             "name": "Downloads",
             "modified": "12/15/2021",
-            "size": 1000024,
+            "size": "",
             "children": [
                 {
                     "id": "9",
                     "type": "folder",
                     "name": "Old_pictures",
                     "modified": "12/12/2021",
-                    "size": 1024,
+                    "size": "",
                     "children": [
                         {
                             "id": "10",
@@ -172,7 +189,7 @@
                     "type": "folder",
                     "name": "Music",
                     "modified": "12/15/2021",
-                    "size": 2048,
+                    "size": "",
                     "children": []
                 },
                 {
@@ -180,7 +197,7 @@
                     "type": "folder",
                     "name": "New-Emails",
                     "modified": "12/13/2021",
-                    "size": 5026,
+                    "size": "",
                     "children": []
                 }
             ]
@@ -190,7 +207,7 @@
             "type": "folder",
             "name": "Home",
             "modified": "09/15/2021",
-            "size": 1000024,
+            "size": "",
             "children": []
         }
     ]
