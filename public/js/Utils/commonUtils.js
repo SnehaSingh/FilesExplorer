@@ -9,6 +9,10 @@ export const formatSize = (bytes) => {
     const GIGABYTE = 1024 * 1024 * 1024;
     const TERABYTE = 1024 * 1024 * 1024 * 1024;
 
+    if(bytes === "") {
+      return "";
+    }
+
     if ((bytes >= 0) && (bytes < KILOBYTE)) {
         return bytes + ' B';
     } else if ((bytes >= KILOBYTE) && (bytes < MEGABYTE)) {
