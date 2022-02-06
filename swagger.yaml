@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  description: "This is a server that returns a list of files and folders on the system."
+  version: "1.0.0"
+  title: "Files API"
+host: "localhost:3000"
+basePath: "/"
+tags:
+- name: "files"
+  description: "Explore all files and folders"
+schemes:
+- "https"
+- "http"
+paths:
+  /files:
+    get:
+      tags:
+      - "files"
+      summary: "Returns all files on the system"
+      description: "Returns the file system's files and folders for the pupose of browsing"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/File"
+
+definitions:
+  File:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      type:
+        type: "string"
+      name:
+        type: "string"
+      modified:
+        type: "string"
+        format: "date"
+      size:
+        type: "integer"
+        format: "int64"
+      children:
+        type: "array"
+        items: {}
