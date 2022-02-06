@@ -13,7 +13,7 @@ function FilesExplorer() {
     let sortOrder = '';
 
     // clear out the table before the update operation
-    const clearTable = () => {
+    const clearExplorer = () => {
         const collection = document.querySelectorAll('tr');
         for (let i = 0; i < collection.length; i++) {
             if (collection[i].firstElementChild.nodeName !== "TH") {
@@ -70,7 +70,7 @@ function FilesExplorer() {
         const table = document.getElementById("explorerTable");
 
         // clear the explorer table before updating it
-        clearTable();
+        clearExplorer();
         currentTreeNodes = [];
         for (let i = 0; i < treeNodesList.length; i++){
             currentTreeNodes.push(treeNodesList[i]);

@@ -23,8 +23,8 @@ const mockFileList = {
 };
 
 test('test that sidebar is created data array contains elements', () => {
-  const { createSidebar } = Sidebar();
-  const ul = createSidebar(mockFileList, () => {});
+  const { createTree } = Sidebar();
+  const ul = createTree(mockFileList, () => {});
   const firstFolder = ul.querySelector("li span button ~ button");
   const secondFolder = ul.querySelector("li ~ li span button ~ button");
 
@@ -38,9 +38,9 @@ test('test that sidebar is created data array contains elements', () => {
   expect(secondFolder.textContent).toBe('Folder2');
 });
 
-test('test that sidebar is created with no children when no folders are present', () => {
-  const { createSidebar } = Sidebar();
-  const ul = createSidebar({"data": []}, () => {});
+test('test that sidebar is created when no folders are present', () => {
+  const { createTree } = Sidebar();
+  const ul = createTree({"data": []}, () => {});
 
   // this tree should have no children
   expect(ul.children.length).toBe(0);

@@ -1,7 +1,7 @@
 function Sidebar(data) {
 
-    // creates a navigation item for the sidebar
-    const createFolder = (folder, updateExplorerCallback) => {
+    // creates a single navigation item called node, on the sidebar
+    const createNode = (folder, updateExplorerCallback) => {
         const { name } = folder;
         var li = document.createElement("li");
         var span = document.createElement("span");
@@ -11,9 +11,8 @@ function Sidebar(data) {
         button.className = "navbar__buttons";
         button.innerHTML = name || "";
         button.addEventListener("click", () => {
-
-            // clicking populates contents of this folder in the file explorer
-            // on the right pane
+            // clicking on this node, updates the contents of this folder in the file explorer
+            // on the explorer pane
             updateExplorerCallback(folder?.children);
         });
 
@@ -21,7 +20,6 @@ function Sidebar(data) {
         iconButton.className = "navbar_iconButtons";
         iconButton.innerHTML = '<i class="fa fa-caret-right"></i>';
         iconButton.addEventListener("click", () => {
-
             // if child folders are not populated, then populate it
             if (!iconButton.nextElementSibling.nextElementSibling) {
                 const { children} = folder;
@@ -32,7 +30,7 @@ function Sidebar(data) {
                 for (let i = 0; i < children.length; i++) {
                     const { type } = children[i];
                     if (type === "folder") {
-                        const subListItem = createFolder(children[i], updateExplorerCallback);
+                        const subListItem = createNode(children[i], updateExplorerCallback);
                         ul.appendChild(subListItem);
                     }
                 }
@@ -47,15 +45,16 @@ function Sidebar(data) {
         return li;
     };
 
-    // Rename to createTree
-    const create = (props, updateExplorerCallback) => {
+    // function that creates a Tree nodes structure on the sidebar and
+    // attaches it to the dom
+    const createTree = (props, updateExplorerCallback) => {
         const { data } = props;
         const ul = document.createElement("ul");
         ul.className = "sidebar__listContainer";
         for (let i = 0; i < data?.length; i++) {
             const folderDetails = data[i];
             if (folderDetails?.type === "folder") {
-                const listItem = createFolder(folderDetails, updateExplorerCallback);
+                const listItem = createNode(folderDetails, updateExplorerCallback);
                 ul.appendChild(listItem);
             }
             //create the file explorer for the first folder if it exists
@@ -64,7 +63,7 @@ function Sidebar(data) {
         return ul;
     };
     return {
-        createSidebar: create,
+      createTree: createTree,
     }
 }
 
