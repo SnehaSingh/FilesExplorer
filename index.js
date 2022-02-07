@@ -4,10 +4,6 @@ const port = 3000;
 
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-  res.send('Working');
-});
-
 app.get('/files', (req, res) => {
   const lister = require('./lib/lister');
   const data = lister.createJsonTree();
