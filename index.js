@@ -2,19 +2,19 @@ const express = require('express')
 const app = express();
 const port = 3000;
 
-const path = require('path');
-
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Working');
 });
 
 app.get('/files', (req, res) => {
-    const data = require('./data/data.json');
-    res.json(data);
+  const lister = require('./lib/lister');
+  const data = lister.createJsonTree();
+  const formattedJson = lister.formatJson(data);
+  res.json(formattedJson);
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`FilesExport app is listening on port ${port}`)
 });
