@@ -1,5 +1,6 @@
 # FilesExplorer
 This is an app that lets users browse the files and folders on the server.
+**Loom Link for video: https://www.loom.com/share/d77e6b68d43d4957b367bdf448422185**
 
 # Folder structure
 ```bash
