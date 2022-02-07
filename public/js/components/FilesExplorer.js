@@ -6,7 +6,7 @@ import {
     sortBySizeAsc,
     sortBySizeDesc
 } from '../Utils/sortUtils.js';
-import { formatSize } from '../Utils/commonUtils.js';
+import { formatSize, formatDate } from '../Utils/commonUtils.js';
 
 function FilesExplorer() {
     let currentTreeNodes = [];
@@ -53,7 +53,8 @@ function FilesExplorer() {
             nameElement.appendChild(nameTextNode);
         }
 
-        const dateTextNode = document.createTextNode(modified);
+        const formattedDate = formatDate(modified);
+        const dateTextNode = document.createTextNode(formattedDate);
         const formattedSize = formatSize(size);
         const sizeTextNode = document.createTextNode(formattedSize);
 

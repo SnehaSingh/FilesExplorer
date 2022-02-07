@@ -29,3 +29,21 @@ export const formatSize = (bytes) => {
     }
     return bytes + ' B';
 }
+
+
+/**
+ * converts mtime (Sun Feb 06 2022 21:24:58 GMT-0800 (Pacific Standard Time)) to mm/dd/yyyy format
+ * @param {mtime} date in string format mtime
+ * @returns 
+ */
+export const formatDate = (mtime) => {
+  const date = new Date(mtime);
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  const year = date.getFullYear();
+  if (day < 10)
+    day = '0' + day;
+  if (month < 10)
+    month = '0' + month;
+  return month + '/' + day + '/' + year;
+}

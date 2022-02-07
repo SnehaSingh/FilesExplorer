@@ -49,16 +49,19 @@ function Sidebar(data) {
     // attaches it to the dom
     const createTree = (props, updateExplorerCallback) => {
         const { data } = props;
+        let explorerCreated = false;
         const ul = document.createElement("ul");
         ul.className = "sidebar__listContainer";
         for (let i = 0; i < data?.length; i++) {
-            const folderDetails = data[i];
-            if (folderDetails?.type === "folder") {
-                const listItem = createNode(folderDetails, updateExplorerCallback);
+            const nodeDetails = data[i];
+            if (nodeDetails?.type === "folder") {
+                const listItem = createNode(nodeDetails, updateExplorerCallback);
                 ul.appendChild(listItem);
+                if (!explorerCreated) {
+                  updateExplorerCallback(nodeDetails.children);
+                  explorerCreated = true;
+                }
             }
-            //create the file explorer for the first folder if it exists
-            updateExplorerCallback(data[0]?.children);
         }
         return ul;
     };
