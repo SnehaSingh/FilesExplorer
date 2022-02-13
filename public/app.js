@@ -18,6 +18,7 @@ function createExplorer() {
         loadingAnimation.classList.remove("active");
         const sidebarNavComponent = createTree(data, updateExplorer);
         document.getElementById("navbar").appendChild(sidebarNavComponent);
+        update(data?.data);
     })
     .catch(error => {
         console.log("An error has occurred while fetching data. ", error);

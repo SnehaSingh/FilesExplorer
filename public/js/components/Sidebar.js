@@ -57,10 +57,6 @@ function Sidebar(data) {
             if (nodeDetails?.type === "folder") {
                 const listItem = createNode(nodeDetails, updateExplorerCallback);
                 ul.appendChild(listItem);
-                if (!explorerCreated) {
-                  updateExplorerCallback(nodeDetails.children);
-                  explorerCreated = true;
-                }
             }
         }
         return ul;
